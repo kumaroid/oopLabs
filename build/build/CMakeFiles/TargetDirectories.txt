@@ -1,0 +1,3 @@
+C:/Users/kumar/oopLabs/build/build/CMakeFiles/result.dir
+C:/Users/kumar/oopLabs/build/build/CMakeFiles/edit_cache.dir
+C:/Users/kumar/oopLabs/build/build/CMakeFiles/rebuild_cache.dir
