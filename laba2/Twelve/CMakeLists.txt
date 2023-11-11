@@ -1,0 +1,1 @@
+add_library(twelve_lib twelve.cpp)
