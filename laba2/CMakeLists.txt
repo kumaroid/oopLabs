@@ -11,7 +11,7 @@ add_compile_options(-ggdb)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-add_subdirectory(twelve)
+add_subdirectory(Twelve)
 add_subdirectory(tests)
 
 add_executable(main main.cpp)
