@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtwelve_lib.a CMakeFiles/twelve_lib.dir/twelve.cpp.o
-/usr/bin/ranlib libtwelve_lib.a

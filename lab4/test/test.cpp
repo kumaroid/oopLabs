@@ -8,14 +8,14 @@
 #include "square.h"
 #include "trapezoid.h"
 
-TEST(lab3, square) {
+TEST(lab4, square) {
     EXPECT_EQ(Square<int>({0, 0}, {2, 2}), Square<int>({0, 2}, {2, 0}));
     EXPECT_TRUE(
         eq(static_cast<double>(Square<double>({0, 2}, {2, 3.4})), 2.98));
     EXPECT_EQ(Square<int>({-1, -1}, {0, 0}).center(), (Point{-0.5, -0.5}));
 }
 
-TEST(lab3, rectangle) {
+TEST(lab4, rectangle) {
     auto rec1 =
         Rectangle<long>(Point<long>{0, 1}, Segment<long>{{0, 0}, {1, 1}});
     auto rec2 =
@@ -50,7 +50,7 @@ TEST(lab3, rectangle) {
     EXPECT_EQ(rec_d.center(), Point<double>(2, 0));
 }
 
-TEST(lab3, trapezoid) {
+TEST(lab4, trapezoid) {
     auto tr1 = Trapezoid<int>{Segment<int>{{0, 0}, {1, 1}},
                               Segment<int>{{0, -3}, {6, 3}}};
     auto tr2 = Trapezoid<int>{Segment<int>{{0, -3}, {6, 3}},
@@ -64,7 +64,7 @@ TEST(lab3, trapezoid) {
     EXPECT_EQ(tr3.center(), (Point<double>{1, 0.5}));
 }
 
-TEST(lab3, array) {
+TEST(lab4, array) {
     auto fig1 = std::make_shared<Square<double>>(Point<double>{0, 0},
                                                  Point<double>{2, 2});
     auto fig2 = std::make_shared<Square<double>>(Point<double>{0, 2},

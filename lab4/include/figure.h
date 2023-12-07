@@ -135,7 +135,6 @@ template <Number T>
 bool operator==(Point<T> const& first, Point<T> const& second) {
     return eq(first.x, second.x) && eq(first.y, second.y);
 }
-
 template <Number T>
 bool operator<(Point<T> const& first,
                Point<T> const& second) {  // checked unequality
