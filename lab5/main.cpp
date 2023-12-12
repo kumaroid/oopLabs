@@ -1,42 +1,84 @@
 #include <iostream>
 #include <map>
+#include <chrono>
+#include "item_queue.h"
+#include "allocator.h"
 
-#include "lab5/include/Allocator.h"
-#include "lab5/include/Queue.h"
-#include  "lab5/src/Queue.cpp"
+#include <deque>
 
-using namespace allocator;
-using namespace containers;
+int main() {
 
-using map_with_my_alloc = std::map<int, int, std::less<int>, Allocator<std::pair<const int, int>>>;
-using queue_with_my_alloc = Queue<int>;
+    std::map<int, int, std::less<int>, mai::Allocator<std::pair<const int, int>>> m;
 
-int factorial(int n) {
-   return (n == 0) ? 1 : n * factorial(n - 1);
-}
+    int64_t counter = 1;
+    m.insert(std::pair<int, int>(0, 0));
+    for (int64_t i = 1; i < 10; ++i) {
+        counter *= i;
+        m.insert(std::pair<int, int>(i, counter));
+    }
 
-int main(int argv, char** argc) {
-   map_with_my_alloc map;
-   
-   for (int i = 0; i != 10; ++i) {
-      map[i] = factorial(i);
-   }
+    for (auto e: m) {
+        std::cout << e.first << ' ' << e.second << '\n';
+    }
+     
+    std::cout << "======================================" << std::endl;
+    
+    
+    mai::Queue<int, mai::Allocator> q2 {1, 10, 3, 4, 5}; 
+    
+    mai::Queue<int, mai::Allocator> q{1, 2, 3, 4, 2,2,3,3,1};
+    q = std::move(q2);
+    std::cout << q.front() << std::endl;
+    // std::cout << q.size() << std::endl;
+    q.pop();
 
-   for (const auto& pair: map) {
-      std::cout << pair.first << " " << pair.second << std::endl;
-   }
+    std::cout << q.front() << std::endl;
+    // std::cout << q.size() << std::endl;
+    q.pop();
 
-   queue_with_my_alloc queue;
-   
-   for (int i = 0; i != 20; ++i) {
-      queue.push(i);
-   }
+    std::cout << q.front() << std::endl;
+    // std::cout << q.size() << std::endl;
+    q.pop();
 
-   while (!queue.empty()) {
-      std::cout << queue.front() << " ";
-      queue.pop();
-   }
-   std::cout << std::endl;
+    std::cout << q.front() << std::endl;
+    // std::cout << q.size() << std::endl;
+    q.pop();
 
-   return 0;
-}
+    std::cout << q.front() << std::endl;
+    // std::cout << q.size() << std::endl;
+    q.pop();
+
+
+    // {
+    //     auto begin = std::chrono::high_resolution_clock::now();
+    //     using Allocator = mai::Allocator<std::pair<const int, int>>;
+    //     std::map<int, int, std::less<int>, Allocator> m;
+    //     // std::map<int, int> m;
+    //     int64_t counter = 1;
+    //     m.insert(std::pair<int, int>(0, 0));
+    //     for (int64_t i = 1; i < 1000; ++i) {
+    //         counter *= i;
+    //         m.insert(std::pair<int, int>(i, counter));
+    //     }
+    //     auto end = std::chrono::high_resolution_clock::now();
+    //     std::cout << "test1: " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << std::endl;
+    // }
+    // {
+    //     auto begin = std::chrono::high_resolution_clock::now();
+    //     using Allocator = std::allocator<std::pair<const int, int>>;
+    //     std::map<int, int, std::less<int>, Allocator> m;
+    //     // std::map<int, int> m;
+    //     int64_t counter = 1;
+    //     m.insert(std::pair<int, int>(0, 0));
+    //     for (int64_t i = 1; i < 1000; ++i) {
+    //         counter *= i;
+    //         m.insert(std::pair<int, int>(i, counter));
+    //     }
+    //     auto end = std::chrono::high_resolution_clock::now();
+    //     std::cout << "test2: " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << std::endl;
+    // }
+    
+
+
+    return 0;
+}  
